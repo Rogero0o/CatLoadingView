@@ -6,3 +6,6 @@
 .DS_Store
 /build
 /captures
+.idea/
+app/src/test/java/com/roger/catloadingview/ExampleUnitTest.java
+catloadinglibrary/src/test/java/com/roger/catloadinglibrary/ExampleUnitTest.java
