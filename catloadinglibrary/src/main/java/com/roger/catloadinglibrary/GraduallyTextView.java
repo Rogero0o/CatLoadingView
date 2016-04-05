@@ -65,7 +65,7 @@ public class GraduallyTextView extends EditText {
                 new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        progress = (float) animation.getAnimatedValue();
+                        progress = (Float) animation.getAnimatedValue();
                         GraduallyTextView.this.invalidate();
                     }
                 });
