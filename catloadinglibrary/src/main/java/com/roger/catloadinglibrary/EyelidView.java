@@ -19,7 +19,7 @@ public class EyelidView extends View {
     private boolean isLoading;
     private Paint mPaint;
     private boolean isStop = true;
-    private int duration = 1012;
+    private int duration = 1000;
     private ValueAnimator valueAnimator;
     private boolean isFromFull;
 
@@ -77,7 +77,10 @@ public class EyelidView extends View {
         }
         isLoading = true;
         isStop = false;
+        valueAnimator.start();
+    }
 
+    public void resetAnimator(){
         valueAnimator.start();
     }
 
@@ -86,7 +89,6 @@ public class EyelidView extends View {
         isLoading = false;
         valueAnimator.end();
         valueAnimator.cancel();
-        valueAnimator = null;
         isStop = true;
     }
 

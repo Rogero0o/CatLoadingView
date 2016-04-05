@@ -89,7 +89,6 @@ public class GraduallyTextView extends EditText {
         mPaint.setColor(getCurrentTextColor());
         mPaint.setTextSize(getTextSize());
         setMinWidth(getWidth());
-        setMinHeight(getHeight());
         setText("");
         setHint("");
         valueAnimator.start();
@@ -101,7 +100,6 @@ public class GraduallyTextView extends EditText {
         isLoading = false;
         valueAnimator.end();
         valueAnimator.cancel();
-        valueAnimator = null;
         isStop = true;
         setText(text);
     }

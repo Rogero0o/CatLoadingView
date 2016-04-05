@@ -8,8 +8,8 @@ import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 
 /**
  * Created by Administrator on 2016/3/30.
@@ -38,12 +38,23 @@ public class CatLoadingView extends DialogFragment {
             mDialog.setCanceledOnTouchOutside(true);
             mDialog.getWindow().setGravity(Gravity.CENTER);
 
-            operatingAnim = AnimationUtils.loadAnimation(getContext(),
-                    R.anim.animition);
-            eye_left_Anim = AnimationUtils.loadAnimation(getContext(),
-                    R.anim.animition);
-            eye_right_Anim = AnimationUtils.loadAnimation(getContext(),
-                    R.anim.animition);
+            operatingAnim = new RotateAnimation(360f, 0f,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f);
+            operatingAnim.setRepeatCount(Animation.INFINITE);
+            operatingAnim.setDuration(2000);
+
+            eye_left_Anim = new RotateAnimation(360f, 0f,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f);
+            eye_left_Anim.setRepeatCount(Animation.INFINITE);
+            eye_left_Anim.setDuration(2000);
+
+            eye_right_Anim = new RotateAnimation(360f, 0f,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f);
+            eye_right_Anim.setRepeatCount(Animation.INFINITE);
+            eye_right_Anim.setDuration(2000);
 
             LinearInterpolator lin = new LinearInterpolator();
             operatingAnim.setInterpolator(lin);
@@ -72,6 +83,25 @@ public class CatLoadingView extends DialogFragment {
 
             mGraduallyTextView = (GraduallyTextView) view.findViewById(
                     R.id.graduallyTextView);
+
+            operatingAnim.setAnimationListener(
+                    new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                        }
+
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            eyelid_left.resetAnimator();
+                            eyelid_right.resetAnimator();
+                        }
+                    });
         }
         return mDialog;
     }
@@ -90,10 +120,6 @@ public class CatLoadingView extends DialogFragment {
 
     @Override public void onPause() {
         super.onPause();
-
-        operatingAnim.cancel();
-        eye_left_Anim.cancel();
-        eye_right_Anim.cancel();
 
         operatingAnim.reset();
         eye_left_Anim.reset();
