@@ -110,10 +110,6 @@ public class EyelidView extends View {
         }
     }
 
-
-    /**
-     * 从充满开始或是从空白开始
-     */
     public void setFromFull(boolean fromFull) {
         isFromFull = fromFull;
     }
