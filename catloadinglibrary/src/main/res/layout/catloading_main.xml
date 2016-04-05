@@ -37,7 +37,7 @@
             android:layout_marginTop="12.5dp"
             android:src="@drawable/eyes"
             android:layout_width="24dp"
-            android:layout_height="20dp"
+            android:layout_height="15dp"
             android:id="@+id/eyelid_left"/>
 
         <ImageView
@@ -53,7 +53,7 @@
             android:layout_marginTop="12.5dp"
             android:src="@drawable/eyes"
             android:layout_width="24dp"
-            android:layout_height="20dp"
+            android:layout_height="15dp"
             android:id="@+id/eyelid_right"/>
     </RelativeLayout>
 
