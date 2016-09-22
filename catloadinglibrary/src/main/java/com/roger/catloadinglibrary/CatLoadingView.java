@@ -134,6 +134,10 @@ public class CatLoadingView extends DialogFragment {
         mGraduallyTextView.stopLoading();
     }
 
+    public void setText(String str){
+        mGraduallyTextView.setText(str);
+    }
+
 
     @Override public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
