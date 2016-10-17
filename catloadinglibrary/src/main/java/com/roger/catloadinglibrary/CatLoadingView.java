@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -16,132 +17,123 @@ import android.view.animation.RotateAnimation;
  */
 public class CatLoadingView extends DialogFragment {
 
-    public CatLoadingView() {
-    }
+  public CatLoadingView() {
+  }
 
+  Animation operatingAnim, eye_left_Anim, eye_right_Anim;
 
-    Animation operatingAnim, eye_left_Anim, eye_right_Anim;
+  Dialog mDialog;
 
-    Dialog mDialog;
+  View mouse, eye_left, eye_right;
 
-    View mouse, eye_left, eye_right;
+  EyelidView eyelid_left, eyelid_right;
 
-    EyelidView eyelid_left, eyelid_right;
+  GraduallyTextView mGraduallyTextView;
 
-    GraduallyTextView mGraduallyTextView;
+  String text;
 
+  @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
+    if (mDialog == null) {
+      mDialog = new Dialog(getActivity(), R.style.cart_dialog);
+      mDialog.setContentView(R.layout.catloading_main);
+      mDialog.setCanceledOnTouchOutside(true);
+      mDialog.getWindow().setGravity(Gravity.CENTER);
 
-    @Override public Dialog onCreateDialog(Bundle savedInstanceState) {
-        if (mDialog == null) {
-            mDialog = new Dialog(getActivity(), R.style.cart_dialog);
-            mDialog.setContentView(R.layout.catloading_main);
-            mDialog.setCanceledOnTouchOutside(true);
-            mDialog.getWindow().setGravity(Gravity.CENTER);
+      operatingAnim = new RotateAnimation(360f, 0f, Animation.RELATIVE_TO_SELF, 0.5f,
+          Animation.RELATIVE_TO_SELF, 0.5f);
+      operatingAnim.setRepeatCount(Animation.INFINITE);
+      operatingAnim.setDuration(2000);
 
-            operatingAnim = new RotateAnimation(360f, 0f,
-                    Animation.RELATIVE_TO_SELF, 0.5f,
-                    Animation.RELATIVE_TO_SELF, 0.5f);
-            operatingAnim.setRepeatCount(Animation.INFINITE);
-            operatingAnim.setDuration(2000);
+      eye_left_Anim = new RotateAnimation(360f, 0f, Animation.RELATIVE_TO_SELF, 0.5f,
+          Animation.RELATIVE_TO_SELF, 0.5f);
+      eye_left_Anim.setRepeatCount(Animation.INFINITE);
+      eye_left_Anim.setDuration(2000);
 
-            eye_left_Anim = new RotateAnimation(360f, 0f,
-                    Animation.RELATIVE_TO_SELF, 0.5f,
-                    Animation.RELATIVE_TO_SELF, 0.5f);
-            eye_left_Anim.setRepeatCount(Animation.INFINITE);
-            eye_left_Anim.setDuration(2000);
+      eye_right_Anim = new RotateAnimation(360f, 0f, Animation.RELATIVE_TO_SELF, 0.5f,
+          Animation.RELATIVE_TO_SELF, 0.5f);
+      eye_right_Anim.setRepeatCount(Animation.INFINITE);
+      eye_right_Anim.setDuration(2000);
 
-            eye_right_Anim = new RotateAnimation(360f, 0f,
-                    Animation.RELATIVE_TO_SELF, 0.5f,
-                    Animation.RELATIVE_TO_SELF, 0.5f);
-            eye_right_Anim.setRepeatCount(Animation.INFINITE);
-            eye_right_Anim.setDuration(2000);
+      LinearInterpolator lin = new LinearInterpolator();
+      operatingAnim.setInterpolator(lin);
+      eye_left_Anim.setInterpolator(lin);
+      eye_right_Anim.setInterpolator(lin);
 
-            LinearInterpolator lin = new LinearInterpolator();
-            operatingAnim.setInterpolator(lin);
-            eye_left_Anim.setInterpolator(lin);
-            eye_right_Anim.setInterpolator(lin);
+      View view = mDialog.getWindow().getDecorView();
 
-            View view = mDialog.getWindow().getDecorView();
+      mouse = view.findViewById(R.id.mouse);
 
-            mouse = view.findViewById(R.id.mouse);
+      eye_left = view.findViewById(R.id.eye_left);
 
-            eye_left = view.findViewById(R.id.eye_left);
+      eye_right = view.findViewById(R.id.eye_right);
 
-            eye_right = view.findViewById(R.id.eye_right);
+      eyelid_left = (EyelidView) view.findViewById(R.id.eyelid_left);
 
-            eyelid_left = (EyelidView) view.findViewById(R.id.eyelid_left);
+      eyelid_left.setColor(Color.parseColor("#d0ced1"));
 
-            eyelid_left.setColor(Color.parseColor("#d0ced1"));
+      eyelid_left.setFromFull(true);
 
-            eyelid_left.setFromFull(true);
+      eyelid_right = (EyelidView) view.findViewById(R.id.eyelid_right);
 
-            eyelid_right = (EyelidView) view.findViewById(R.id.eyelid_right);
+      eyelid_right.setColor(Color.parseColor("#d0ced1"));
 
-            eyelid_right.setColor(Color.parseColor("#d0ced1"));
+      eyelid_right.setFromFull(true);
 
-            eyelid_right.setFromFull(true);
+      mGraduallyTextView = (GraduallyTextView) view.findViewById(R.id.graduallyTextView);
+      
+      if (!TextUtils.isEmpty(text)) {
+        mGraduallyTextView.setText(text);
+      }
 
-            mGraduallyTextView = (GraduallyTextView) view.findViewById(
-                    R.id.graduallyTextView);
-
-            operatingAnim.setAnimationListener(
-                    new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                        }
-
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                        }
-
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-                            eyelid_left.resetAnimator();
-                            eyelid_right.resetAnimator();
-                        }
-                    });
+      operatingAnim.setAnimationListener(new Animation.AnimationListener() {
+        @Override public void onAnimationStart(Animation animation) {
         }
-        return mDialog;
+
+        @Override public void onAnimationEnd(Animation animation) {
+        }
+
+        @Override public void onAnimationRepeat(Animation animation) {
+          eyelid_left.resetAnimator();
+          eyelid_right.resetAnimator();
+        }
+      });
     }
+    return mDialog;
+  }
 
+  @Override public void onResume() {
+    super.onResume();
+    mouse.setAnimation(operatingAnim);
+    eye_left.setAnimation(eye_left_Anim);
+    eye_right.setAnimation(eye_right_Anim);
+    eyelid_left.startLoading();
+    eyelid_right.startLoading();
+    mGraduallyTextView.startLoading();
+  }
 
-    @Override public void onResume() {
-        super.onResume();
-        mouse.setAnimation(operatingAnim);
-        eye_left.setAnimation(eye_left_Anim);
-        eye_right.setAnimation(eye_right_Anim);
-        eyelid_left.startLoading();
-        eyelid_right.startLoading();
-        mGraduallyTextView.startLoading();
-    }
+  @Override public void onPause() {
+    super.onPause();
 
+    operatingAnim.reset();
+    eye_left_Anim.reset();
+    eye_right_Anim.reset();
 
-    @Override public void onPause() {
-        super.onPause();
+    mouse.clearAnimation();
+    eye_left.clearAnimation();
+    eye_right.clearAnimation();
 
-        operatingAnim.reset();
-        eye_left_Anim.reset();
-        eye_right_Anim.reset();
+    eyelid_left.stopLoading();
+    eyelid_right.stopLoading();
+    mGraduallyTextView.stopLoading();
+  }
 
-        mouse.clearAnimation();
-        eye_left.clearAnimation();
-        eye_right.clearAnimation();
+  public void setText(String str) {
+    text = str;
+  }
 
-        eyelid_left.stopLoading();
-        eyelid_right.stopLoading();
-        mGraduallyTextView.stopLoading();
-    }
-
-    public void setText(String str){
-        mGraduallyTextView.setText(str);
-    }
-
-
-    @Override public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        mDialog = null;
-        System.gc();
-    }
+  @Override public void onDismiss(DialogInterface dialog) {
+    super.onDismiss(dialog);
+    mDialog = null;
+    System.gc();
+  }
 }
