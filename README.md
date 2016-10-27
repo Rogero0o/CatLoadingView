@@ -1,17 +1,17 @@
 # Android CatLoadingView
 
-This project idea is from [Link](http://mp.weixin.qq.com/s?__biz=MjM5MDMxOTE5NA==&mid=402703079&idx=2&sn=2fcc6746a866dcc003c68ead9b68e595&scene=2&srcid=0302A7p723KK8E5gSzLKb2ZL&from=timeline&isappinstalled=0#wechat_redirect) .<br>
+This project idea is from [Link](http://mp.weixin.qq.com/s?__biz=MjM5MDMxOTE5NA==&mid=402703079&idx=2&sn=2fcc6746a866dcc003c68ead9b68e595&scene=2&srcid=0302A7p723KK8E5gSzLKb2ZL&from=timeline&isappinstalled=0#wechat_redirect).<br>
 Thanks for the idea.<br>
 
-I like the animation in that picture.<br>
+I like the animation in this picture:<br>
 
 ![](http://ww4.sinaimg.cn/mw690/a695acdejw1f2hbmfxzk5g208u0a2ass.gif)
 
-..as you see right now,wish you like it.
+...as you see it right now, I hope you like it!
 
 ### Step
 
-Import this project into android studio..it's build with it.
+Import this project into Android Studio... it's built with it.
 
 ###  Usage
 
@@ -41,13 +41,13 @@ compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1'
 
 ## TODO
 
-This view is adjust in Nexue5 but not test in the other size screen .
+This view is adjusted in Nexus5 but not tested on other screen sizes.
 
 ## About me
 
-A small guy  in mainland FUJIAN China.
+A small guy in Fujian, mainland China.
 
-If you have any new idea about this project, feel free to tell me ,Tks. :smiley:
+If you have any new ideas about this project, feel free to tell me. Tks. :smiley:
 
 
 ## License
