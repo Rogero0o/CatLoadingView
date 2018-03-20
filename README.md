@@ -18,7 +18,7 @@ Import this project into Android Studio... it's built with it.
 #### Gradle
 
 ```
-compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.1'
+compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
 ```
 
 ####  config in java code
