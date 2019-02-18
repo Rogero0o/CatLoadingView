@@ -141,7 +141,7 @@ public class GraduallyTextView extends EditText {
                 canvas.drawText(String.valueOf(text.charAt(lastOne)), 0, 1,
                         scaleX + getPaint().measureText(
                                 text.subSequence(0, lastOne).toString()),
-                        startY, mPaint);
+                        getHeight()/2, mPaint);
             }
         }
     }
