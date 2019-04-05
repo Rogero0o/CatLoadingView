@@ -38,7 +38,11 @@ implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
                     }
                 });
     }
+### Set Background Color
 
+```java
+	mView.setBackgroundColor(Color.parseColor("#000000"));
+```
 ## TODO
 
 This view is adjusted in Nexus5 but not tested on other screen sizes.
