@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/background"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="170dp"
     android:layout_height="200dp"
-    android:background="@drawable/background"
-    tools:context=".MainActivity">
+    android:background="@drawable/background">
 
     <ImageView
         android:layout_centerInParent="true"
