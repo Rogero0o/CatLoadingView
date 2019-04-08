@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 2016/3/30.
@@ -30,7 +31,11 @@ public class CatLoadingView extends DialogFragment {
 
     GraduallyTextView mGraduallyTextView;
 
+    RelativeLayout background;
+
     String text;
+
+    int color;
 
     private boolean isClickCancelAble = true;
 
@@ -63,6 +68,11 @@ public class CatLoadingView extends DialogFragment {
             eye_right_Anim.setInterpolator(lin);
 
             View view = mDialog.getWindow().getDecorView();
+
+            background = view.findViewById(R.id.background);
+
+            if (color !=0)
+                background.setBackgroundColor(color);
 
             mouse = view.findViewById(R.id.mouse);
 
@@ -141,6 +151,10 @@ public class CatLoadingView extends DialogFragment {
 
     public void setClickCancelAble(boolean bo){
         isClickCancelAble = bo;
+    }
+
+    public void setBackgroundColor(int color){
+        this.color = color;
     }
 
     @Override

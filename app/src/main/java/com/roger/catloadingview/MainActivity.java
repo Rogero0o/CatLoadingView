@@ -1,5 +1,6 @@
 package com.roger.catloadingview;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mView = new CatLoadingView();
+        mView.setBackgroundColor(Color.parseColor("#000000"));
         findViewById(R.id.button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override public void onClick(View v) {
