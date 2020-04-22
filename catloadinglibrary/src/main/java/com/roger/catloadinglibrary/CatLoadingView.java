@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.RelativeLayout;
+
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by Administrator on 2016/3/30.
@@ -71,8 +72,9 @@ public class CatLoadingView extends DialogFragment {
 
             background = view.findViewById(R.id.background);
 
-            if (color !=0)
+            if (color !=0) {
                 background.setBackgroundColor(color);
+            }
 
             mouse = view.findViewById(R.id.mouse);
 
