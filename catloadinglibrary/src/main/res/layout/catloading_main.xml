@@ -59,12 +59,12 @@
 
     <com.roger.catloadinglibrary.GraduallyTextView
         android:id="@+id/graduallyTextView"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:textSize="15sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
-        android:text="L O A D I N G ..."
+        android:text="@string/loading"
         android:layout_width="110dp"
         android:layout_height="wrap_content"/>
 

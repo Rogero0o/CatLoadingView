@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CatLoadingLibrary</string>
+    <string name="loading">L O A D I N G ...</string>
 </resources>
