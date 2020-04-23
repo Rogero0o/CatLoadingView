@@ -77,7 +77,7 @@ class GraduallyTextView : AppCompatEditText {
         isStop = false
         charSequence = text!!
         localScaleX = textScaleX * 10
-        startY = 88
+        startY = lineHeight
         paint.color = currentTextColor
         paint.textSize = textSize
         minWidth = width

@@ -30,6 +30,7 @@ dependencies {
     implementation project(':catloadinglibrary')
     implementation "androidx.core:core-ktx:1.2.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }
 repositories {
     mavenCentral()
