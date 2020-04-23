@@ -11,12 +11,13 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 
 /**
  * Created by Administrator on 2016/3/30.
  */
-class CatLoadingView : DialogFragment() {
+class CatLoadingView : BaseDialogFragment() {
     private lateinit var operatingAnim: Animation
     private lateinit var eyeLeftAnim: Animation
     private lateinit var eyeRightAnim: Animation
@@ -33,7 +34,6 @@ class CatLoadingView : DialogFragment() {
     private var mainDialog: Dialog? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        if (mainDialog == null) {
             mainDialog = Dialog(requireActivity(), R.style.cart_dialog).apply {
                 setContentView(R.layout.catloading_main)
                 setCanceledOnTouchOutside(isClickCancelAble)
@@ -71,10 +71,10 @@ class CatLoadingView : DialogFragment() {
                 eyeLeft = view.findViewById(R.id.eye_left)
                 eyeRight = view.findViewById(R.id.eye_right)
                 eyelidLeft = view.findViewById<View>(R.id.eyelid_left) as EyelidView
-                eyelidLeft.setColor(Color.parseColor("#d0ced1"))
+                eyelidLeft.setColor(ContextCompat.getColor(requireContext(), R.color.eyelid))
                 eyelidLeft.setFromFull(true)
                 eyelidRight = view.findViewById<View>(R.id.eyelid_right) as EyelidView
-                eyelidRight.setColor(Color.parseColor("#d0ced1"))
+                eyelidRight.setColor(ContextCompat.getColor(requireContext(), R.color.eyelid))
                 eyelidRight.setFromFull(true)
                 graduallyTextView =
                     view.findViewById<View>(R.id.graduallyTextView) as GraduallyTextView
@@ -90,7 +90,6 @@ class CatLoadingView : DialogFragment() {
                     }
                 })
             }
-        }
         return mainDialog!!
     }
 
@@ -105,16 +104,24 @@ class CatLoadingView : DialogFragment() {
     }
 
     override fun onPause() {
-        super.onPause()
-        operatingAnim.reset()
-        eyeLeftAnim.reset()
-        eyeRightAnim.reset()
+        operatingAnim.cancel()
+        eyeLeftAnim.cancel()
+        eyeRightAnim.cancel()
         mouse.clearAnimation()
         eyeLeft.clearAnimation()
         eyeRight.clearAnimation()
         eyelidLeft.stopLoading()
         eyelidRight.stopLoading()
         graduallyTextView.stopLoading()
+        super.onPause()
+    }
+
+    override fun onDestroyView() {
+        if(mainDialog?.isShowing == true){
+            mainDialog?.dismiss()
+            mainDialog = null
+        }
+        super.onDestroyView()
     }
 
     fun setText(str: String?) {
@@ -127,11 +134,5 @@ class CatLoadingView : DialogFragment() {
 
     fun setBackgroundColor(color: Int) {
         this.color = color
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        mainDialog = null
-        System.gc()
     }
 }

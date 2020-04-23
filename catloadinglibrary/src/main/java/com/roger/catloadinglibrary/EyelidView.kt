@@ -52,14 +52,13 @@ class EyelidView : View {
         isEnabled = false
         isFocusableInTouchMode = false
         valueAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration(duration.toLong())
-        valueAnimator.setInterpolator(AccelerateDecelerateInterpolator())
-        valueAnimator.setRepeatCount(Animation.INFINITE)
-        valueAnimator.setRepeatMode(ValueAnimator.REVERSE)
-        valueAnimator.addUpdateListener(
-            AnimatorUpdateListener { animation ->
-                progress = animation.animatedValue as Float
-                invalidate()
-            })
+        valueAnimator.interpolator = AccelerateDecelerateInterpolator()
+        valueAnimator.repeatCount = Animation.INFINITE
+        valueAnimator.repeatMode = ValueAnimator.REVERSE
+        valueAnimator.addUpdateListener { animation ->
+            progress = animation.animatedValue as Float
+            invalidate()
+        }
     }
 
     fun setColor(color: Int) {
