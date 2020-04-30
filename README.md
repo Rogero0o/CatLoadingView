@@ -23,21 +23,24 @@ implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.5'
 
 ####  config in java code
 
-    CatLoadingView mView;
+```java
+CatLoadingView mView;
 
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        mView = new CatLoadingView();
-        findViewById(R.id.button).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override public void onClick(View v) {
-                        mView.show(getSupportFragmentManager(), "");
-                    }
-                });
-    }
+@Override protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+
+mView = new CatLoadingView();
+findViewById(R.id.button).setOnClickListener(
+	new View.OnClickListener() {
+	    @Override public void onClick(View v) {
+		mView.show(getSupportFragmentManager(), "");
+	    }
+	});
+}
+```
+
 ### Set Background Color
 
 ```java
