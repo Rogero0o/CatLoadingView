@@ -9,7 +9,10 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.RelativeLayout
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+
 
 /**
  * Created by Administrator on 2016/3/30.
@@ -59,7 +62,12 @@ class CatLoadingView : BaseDialogFragment() {
         mainDialog?.window?.decorView?.let { view ->
             background = view.findViewById(R.id.background)
             if (color != 0) {
-                background.setBackgroundColor(color)
+                val unwrappedDrawable = AppCompatResources.getDrawable(view.context, R.drawable.background)
+                unwrappedDrawable?.let {
+                    val wrappedDrawable = DrawableCompat.wrap(it)
+                    DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(view.context, color))
+                    background.background = wrappedDrawable
+                }
             }
             mouse = view.findViewById(R.id.mouse)
             eyeLeft = view.findViewById(R.id.eye_left)
