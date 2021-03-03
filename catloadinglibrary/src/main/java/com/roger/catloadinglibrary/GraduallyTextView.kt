@@ -25,14 +25,14 @@ class GraduallyTextView : AppCompatEditText {
     private var isStop = true
     private var localScaleX = 0f
     private var duration = 2000
-    private var sigleDuration = 0f
+    private var singleDuration = 0f
 
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context) : super(context) {
         init()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(
+    constructor(context: Context, attrs: AttributeSet?) : super(
         context,
         attrs
     ) {
@@ -40,7 +40,7 @@ class GraduallyTextView : AppCompatEditText {
     }
 
     constructor(
-        context: Context?,
+        context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int
     ) : super(context, attrs, defStyleAttr) {
@@ -84,7 +84,7 @@ class GraduallyTextView : AppCompatEditText {
         setText("")
         hint = ""
         valueAnimator.start()
-        sigleDuration = 100f / textLength
+        singleDuration = 100f / textLength
     }
 
     fun stopLoading() {
@@ -118,15 +118,15 @@ class GraduallyTextView : AppCompatEditText {
         super.onDraw(canvas)
         if (!isStop) {
             paint.alpha = 255
-            if (progress / sigleDuration >= 1) {
+            if (progress / singleDuration >= 1) {
                 canvas.drawText(
                     charSequence.toString(), 0,
-                    (progress / sigleDuration).toInt(), localScaleX, startY.toFloat(),
+                    (progress / singleDuration).toInt(), localScaleX, startY.toFloat(),
                     paint
                 )
             }
-            paint.alpha = (255 * (progress % sigleDuration / sigleDuration)).toInt()
-            val lastOne = (progress / sigleDuration).toInt()
+            paint.alpha = (255 * (progress % singleDuration / singleDuration)).toInt()
+            val lastOne = (progress / singleDuration).toInt()
             if (lastOne < textLength) {
                 canvas.drawText(
                     charSequence[lastOne].toString(), 0, 1,
